@@ -1,0 +1,98 @@
+[versions]
+jdk-version = "21"
+
+kotlin-version = "2.2.0"
+kotlinx-coroutines-version = "1.10.2"
+
+ktlint-gradle-version = "13.0.0"
+ktlint-version = "1.6.0"
+reactor-kotlin-extensions-version = "1.2.3"
+
+spring-boot-version = "3.5.3"
+spring-dependency-management-version = "1.1.7"
+spring-cloud-version = "2025.0.0"
+
+postgresql-version = "42.7.7"
+r2dbc-postgresql-version = "1.0.7.RELEASE"
+
+sentry-version = "8.17.0"
+
+testcontainers-version = "1.21.3"
+mockk-version = "1.14.5"
+
+netty-resolver-dns-native-macos-version = "4.2.2.Final"
+
+[libraries]
+# Spring Boot Starters
+spring-boot-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
+spring-boot-data-r2dbc = { module = "org.springframework.boot:spring-boot-starter-data-r2dbc" }
+spring-boot-data-redis-reactive = { module = "org.springframework.boot:spring-boot-starter-data-redis-reactive" }
+spring-boot-security = { module = "org.springframework.boot:spring-boot-starter-security" }
+spring-boot-webflux = { module = "org.springframework.boot:spring-boot-starter-webflux" }
+spring-boot-docker-compose = { module = "org.springframework.boot:spring-boot-docker-compose" }
+
+# Jackson
+jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-kotlin" }
+
+# Reactor
+reactor-kotlin-extensions = { module = "io.projectreactor.kotlin:reactor-kotlin-extensions", version.ref = "reactor-kotlin-extensions-version" }
+
+# Sentry
+sentry-spring-boot-starter-jakarta = { module = "io.sentry:sentry-spring-boot-starter-jakarta" }
+sentry-bom = { module = "io.sentry:sentry-bom", version.ref = "sentry-version" }
+
+# Kotlin
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect" }
+kotlinx-coroutines-reactor = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-reactor", version.ref = "kotlinx-coroutines-version" }
+
+# Spring Cloud
+spring-cloud-stream = { module = "org.springframework.cloud:spring-cloud-stream" }
+spring-cloud-dependencies = { module = "org.springframework.cloud:spring-cloud-dependencies", version.ref = "spring-cloud-version" }
+
+# Runtimes
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql-version" }
+r2dbc-postgresql = { module = "org.postgresql:r2dbc-postgresql", version.ref = "r2dbc-postgresql-version" }
+
+# Test Dependencies
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+spring-boot-testcontainers = { module = "org.springframework.boot:spring-boot-testcontainers" }
+reactor-test = { module = "io.projectreactor:reactor-test" }
+kotlin-test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines-version" }
+spring-cloud-stream-test-binder = { module = "org.springframework.cloud:spring-cloud-stream-test-binder" }
+spring-security-test = { module = "org.springframework.security:spring-security-test" }
+testcontainers-junit-jupiter = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainers-version" }
+testcontainers-postgresql = { module = "org.testcontainers:postgresql", version.ref = "testcontainers-version" }
+testcontainers-r2dbc = { module = "org.testcontainers:r2dbc", version.ref = "testcontainers-version" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk-version" }
+
+
+[bundles]
+spring-boot-starters = [
+    "spring-boot-actuator",
+    "spring-boot-data-r2dbc",
+    "spring-boot-data-redis-reactive",
+    "spring-boot-security",
+    "spring-boot-webflux",
+]
+test-implementations = [
+    "spring-boot-starter-test",
+    "spring-boot-testcontainers",
+    "reactor-test",
+    "kotlin-test-junit5",
+    "kotlinx-coroutines-test",
+    "spring-cloud-stream-test-binder",
+    "spring-security-test",
+    "testcontainers-junit-jupiter",
+    "testcontainers-postgresql",
+    "testcontainers-r2dbc",
+    "mockk"
+]
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-version" }
+kotlin-plugin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin-version" }
+springframework-boot = { id = "org.springframework.boot", version.ref = "spring-boot-version" }
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management-version" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint-gradle-version" }
