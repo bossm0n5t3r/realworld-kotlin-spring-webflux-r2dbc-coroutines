@@ -16,8 +16,4 @@ class TestcontainersConfiguration {
     @Bean
     @ServiceConnection(name = "redis")
     fun redisContainer(): GenericContainer<*> = GenericContainer(DockerImageName.parse("redis:latest")).withExposedPorts(6379)
-
-    @Bean
-    @ServiceConnection(name = "openzipkin/zipkin")
-    fun zipkinContainer(): GenericContainer<*> = GenericContainer(DockerImageName.parse("openzipkin/zipkin:latest")).withExposedPorts(9411)
 }
