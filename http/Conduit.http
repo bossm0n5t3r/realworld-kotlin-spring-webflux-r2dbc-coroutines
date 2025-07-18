@@ -1,0 +1,296 @@
+# Conduit
+
+### Hello World!
+GET {{API_URL}}
+Content-Type: application/json
+
+
+### Get All Users
+GET {{API_URL}}/users
+Content-Type: application/json
+
+###
+# group: Auth
+# @name Register
+POST {{API_URL}}/users
+Content-Type: application/json
+
+{"user":{"email":"{{EMAIL}}", "password":"{{PASSWORD}}", "username":"{{USERNAME}}"}}
+
+> {%
+    client.global.set("token", response.body.user.token);
+%}
+
+###
+# group: Auth
+# @name Login
+POST {{API_URL}}/users/login
+Content-Type: application/json
+
+{"user":{"email":"{{EMAIL}}", "password":"{{PASSWORD}}"}}
+
+> {%
+    client.global.set("token", response.body.user.token);
+%}
+
+###
+# group: Auth
+# @name Login and Remember Token
+POST {{API_URL}}/users/login
+Content-Type: application/json
+
+{"user":{"email":"{{EMAIL}}", "password":"{{PASSWORD}}"}}
+
+> {%
+    client.global.set("token", response.body.user.token);
+%}
+
+###
+# group: Auth
+# @name Current User
+GET {{API_URL}}/user
+Content-Type: application/json
+Authorization: Token {{token}}
+
+> {%
+    client.global.set("token", response.body.user.token);
+%}
+
+###
+# group: Auth
+# @name Update User
+PUT {{API_URL}}/user
+Content-Type: application/json
+Authorization: Token {{token}}
+
+{"user":{"bio":"{{BIO}}"}}
+
+> {%
+    client.global.set("token", response.body.user.token);
+%}
+
+###
+# group: Articles
+# @name All Articles
+GET {{API_URL}}/articles
+Content-Type: application/json
+
+###
+# group: Articles
+# @name Articles by Author
+GET {{API_URL}}/articles?
+    author=johnjacob
+Content-Type: application/json
+
+###
+# group: Articles
+# @name Articles Favorited by Username
+GET {{API_URL}}/articles?
+    favorited={{USERNAME}}
+Content-Type: application/json
+
+###
+# group: Articles
+# @name Articles by Tag
+GET {{API_URL}}/articles?
+    tag=dragons
+Content-Type: application/json
+
+###
+# group: Articles, Favorite, Comments
+# @name Create Article
+POST {{API_URL}}/articles
+Content-Type: application/json
+Authorization: Token {{token}}
+
+{
+  "article": {
+    "title": "How to train your dragon",
+    "description": "Ever wonder how?",
+    "body": "Very carefully.",
+    "tagList": [
+      "training",
+      "dragons"
+    ]
+  }
+}
+
+> {%
+    client.global.set("slug", response.body.article.slug);
+%}
+
+###
+# group: Articles, Favorite, Comments
+# @name Feed
+GET {{API_URL}}/articles/feed
+Content-Type: application/json
+Authorization: Token {{token}}
+
+###
+# group: Articles, Favorite, Comments
+# @name All Articles
+GET {{API_URL}}/articles
+Content-Type: application/json
+
+###
+# group: Articles, Favorite, Comments
+# @name All Articles with auth
+GET {{API_URL}}/articles
+Content-Type: application/json
+Authorization: Token {{token}}
+
+###
+# group: Articles, Favorite, Comments
+# @name Articles by Author
+GET {{API_URL}}/articles?
+    author={{USERNAME}}
+Content-Type: application/json
+
+###
+# group: Articles, Favorite, Comments
+# @name Articles by Author with auth
+GET {{API_URL}}/articles?
+    author={{USERNAME}}
+Content-Type: application/json
+Authorization: Token {{token}}
+
+###
+# group: Articles, Favorite, Comments
+# @name Single Article by slug
+GET {{API_URL}}/articles/{{slug}}
+Content-Type: application/json
+Authorization: Token {{token}}
+
+###
+# group: Articles, Favorite, Comments
+# @name Articles by Tag
+GET {{API_URL}}/articles?
+    tag=dragons
+Content-Type: application/json
+Authorization: Token {{token}}
+
+###
+# group: Articles, Favorite, Comments
+# @name Update Article
+PUT {{API_URL}}/articles/{{slug}}
+Content-Type: application/json
+Authorization: Token {{token}}
+
+{
+  "article": {
+    "body": "With two hands"
+  }
+}
+
+> {%
+    client.global.set("slug", response.body.article.slug);
+%}
+
+###
+# group: Articles, Favorite, Comments
+# @name Favorite Article
+POST {{API_URL}}/articles/{{slug}}/favorite
+Content-Type: application/json
+Authorization: Token {{token}}
+
+###
+# group: Articles, Favorite, Comments
+# @name Articles Favorited by Username
+GET {{API_URL}}/articles?
+    favorited={{USERNAME}}
+Content-Type: application/json
+Authorization: Token {{token}}
+
+###
+# group: Articles, Favorite, Comments
+# @name Articles Favorited by Username with auth
+GET {{API_URL}}/articles?
+    favorited={{USERNAME}}
+Content-Type: application/json
+Authorization: Token {{token}}
+
+###
+# group: Articles, Favorite, Comments
+# @name Unfavorite Article
+DELETE {{API_URL}}/articles/{{slug}}/favorite
+Content-Type: application/json
+Authorization: Token {{token}}
+
+###
+# group: Articles, Favorite, Comments
+# @name Create Comment for Article
+POST {{API_URL}}/articles/{{slug}}/comments
+Content-Type: application/json
+Authorization: Token {{token}}
+
+{
+  "comment": {
+    "body": "Thank you so much!"
+  }
+}
+
+> {%
+    client.global.set("commentId", response.body.comment.id);
+%}
+
+###
+# group: Articles, Favorite, Comments
+# @name All Comments for Article
+GET {{API_URL}}/articles/{{slug}}/comments
+Content-Type: application/json
+Authorization: Token {{token}}
+
+###
+# group: Articles, Favorite, Comments
+# @name All Comments for Article without login
+GET {{API_URL}}/articles/{{slug}}/comments
+Content-Type: application/json
+
+###
+# group: Articles, Favorite, Comments
+# @name Delete Comment for Article
+DELETE {{API_URL}}/articles/{{slug}}/comments/{{commentId}}
+Content-Type: application/json
+Authorization: Token {{token}}
+
+###
+# group: Articles, Favorite, Comments
+# @name Delete Article
+DELETE {{API_URL}}/articles/{{slug}}
+Content-Type: application/json
+Authorization: Token {{token}}
+
+###
+# group: Profiles
+# @name Register Celeb
+POST {{API_URL}}/users
+Content-Type: application/json
+
+{"user":{"email":"celeb_{{EMAIL}}", "password":"{{PASSWORD}}", "username":"celeb_{{USERNAME}}"}}
+
+###
+# group: Profiles
+# @name Profile
+GET {{API_URL}}/profiles/celeb_{{USERNAME}}
+Content-Type: application/json
+Authorization: Token {{token}}
+
+###
+# group: Profiles
+# @name Follow Profile
+POST {{API_URL}}/profiles/celeb_{{USERNAME}}/follow
+Content-Type: application/json
+Authorization: Token {{token}}
+
+###
+# group: Profiles
+# @name Unfollow Profile
+DELETE {{API_URL}}/profiles/celeb_{{USERNAME}}/follow
+Content-Type: application/json
+Authorization: Token {{token}}
+
+###
+# group: Tags
+# @name All Tags
+GET {{API_URL}}/tags
+Content-Type: application/json
