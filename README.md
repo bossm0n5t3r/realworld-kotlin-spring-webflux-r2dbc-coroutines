@@ -1,8 +1,9 @@
 # ![RealWorld Example App](logo.png)
 
-> ### Kotlin + Spring WebFlux + R2DBC + Coroutines codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
+> Kotlin + Spring WebFlux + R2DBC + Coroutines codebase containing real world examples (CRUD, auth, advanced patterns,
+> etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
 
-### [Demo](https://demo.realworld.build/)&nbsp;&nbsp;&nbsp;&nbsp;[RealWorld](https://github.com/gothinkster/realworld)
+## [Demo](https://demo.realworld.build/)&nbsp;&nbsp;&nbsp;&nbsp;[RealWorld](https://github.com/gothinkster/realworld)
 
 This codebase was created to demonstrate a fully fledged fullstack application built with **Kotlin, Spring WebFlux,
 R2DBC, and Coroutines** including CRUD operations, authentication, routing, pagination, and more.
@@ -12,7 +13,7 @@ We've gone to great lengths to adhere to the **Spring Boot and Kotlin** communit
 For more information on how this works with other frontends/backends, head over to
 the [RealWorld](https://github.com/gothinkster/realworld) repo.
 
-# How it works
+## How it works
 
 This is a reactive backend implementation of the RealWorld specification using:
 
@@ -31,14 +32,14 @@ This is a reactive backend implementation of the RealWorld specification using:
 The application follows a reactive programming model throughout the stack, from the web layer down to the database
 access layer, providing non-blocking, asynchronous execution.
 
-# Getting started
+## Getting started
 
-## Prerequisites
+### Prerequisites
 
 - JDK 17 or later
 - Docker and Docker Compose
 
-## Running the application
+### Running the application
 
 1. Clone the repository:
    ```
@@ -55,27 +56,31 @@ access layer, providing non-blocking, asynchronous execution.
 
 3. The API will be available at `http://localhost:8080/api`
 
-## Running tests
+### Running tests
 
 ```
 ./gradlew test
 ```
 
-## Building for production
+### Building for production
 
 ```
 ./gradlew build
 ```
 
-# API Documentation
+## API Documentation
 
 The API adheres to the [RealWorld API spec](https://github.com/gothinkster/realworld/tree/master/api).
 
-# Contributing
+## References
+
+- [https://github.com/spring-projects/spring-data-examples/tree/main/r2dbc/example](https://github.com/spring-projects/spring-data-examples/tree/main/r2dbc/example)
+
+## Contributing
 
 Please read the [RealWorld guidelines](https://github.com/gothinkster/realworld/blob/master/CONTRIBUTING.md) for
 contributing.
 
-# License
+## License
 
 This project is open source and available under the [MIT License](LICENSE).
